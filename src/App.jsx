@@ -7,16 +7,18 @@ import Home from "./components/home/home";
 import About from "./components/about/about";
 import Contact from "./components/contact/contact";
 import Header from "./components/header/header";
+import Projects from "./components/projects/projects";
 
 function App() {
   return (
     <Router>
       <Header />
       <Switch>
-        <Route path="/" exact component={Home} />
+        <Route path="/"  exact component={Home} />
         <Route path="/about" component={About} />
-        <Route path="/project1" component={Project1} />
-        <Route path="/project2" component={Project2} />
+        <Route path="/projects" component={Projects} />
+        <Route path="/projects/project1" component={Project1} />
+        <Route path="/projects/project2" component={Project2} />
         <Route path="/contact" component={Contact} />
       </Switch>
     </Router>
