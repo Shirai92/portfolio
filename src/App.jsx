@@ -1,27 +1,24 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Project1 from "./components/projects/project1/project1";
-import Project2 from "./components/projects/project2/project2";
-import Home from "./components/home/home";
-import About from "./components/about/about";
-import Contact from "./components/contact/contact";
-import Header from "./components/header/header";
-import Projects from "./components/projects/projects";
+import Routes from "./routes";
+import Nav from "./components/nav";
+import { BrowserRouter as Router } from "react-router-dom";
+import Foter from "./components/footer";
+import { Layout } from "antd";
 
 function App() {
+  const { Content } = Layout;
   return (
-    <Router>
-      <Header />
-      <Switch>
-        <Route path="/"  exact component={Home} />
-        <Route path="/about" component={About} />
-        <Route path="/projects" component={Projects} />
-        <Route path="/projects/project1" component={Project1} />
-        <Route path="/projects/project2" component={Project2} />
-        <Route path="/contact" component={Contact} />
-      </Switch>
-    </Router>
+    <>
+      <Layout style={{ minHeight: "100vh" }}>
+        <Router>
+          <Nav />
+          <Routes />
+        </Router>
+        <Content />
+        <Foter />
+      </Layout>
+    </>
   );
 }
 
