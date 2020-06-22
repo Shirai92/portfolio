@@ -9,6 +9,8 @@ const Foter = () => {
         textAlign: "center",
         position: "sticky",
         bottom: "0",
+        backgroundColor: "grey"
+        
       }}
     >Stopka
     </Footer>

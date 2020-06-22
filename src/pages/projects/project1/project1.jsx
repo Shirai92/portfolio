@@ -1,13 +1,54 @@
-import React from "react";
-import { Button } from "antd";
-
-
+import React, { useState, useEffect} from "react";
+import UsersList from "./usersList";
+import ButtonFetch from "./buttonFetch";
+import PageUserList from './pageUserList'
+import {Spin} from "antd";
 const Project1 = () => {
-  console.log('a')
+  const [users, setUsers] = useState([]);
+  const [isLoading, setLoading] = useState(false);
+  const [userList, setUserList] = useState([]);
+  const [isLoading2, setLoading2] = useState(false);
+
+  const API = "https://randomuser.me/api/?results=4";
+  
+  
+  useEffect(() => {
+    setLoading2(true);
+    fetch(API)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      setLoading2(false)      
+      setUserList(data.results);
+    })
+    .catch((error) => console.log(error));
+  },[])
+  
+  if (isLoading2) 
+  return <div>
+    <Spin tip='Loading...'></Spin>
+  </div>;
+
+  const handleDataFetch = () => {
+    setLoading(true);
+    // console.log('click');
+    fetch(API)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);        
+        setLoading(false);
+        setUsers(data.results);
+      })
+      .catch((error) => console.log(error));
+  };
+  
+
+  
   return (
     <div>
-      <p>project1</p>
-      <Button type="primary">Button</Button>
+      <PageUserList pageUser={userList}></PageUserList>
+      <ButtonFetch click={handleDataFetch} isLoading={isLoading} />
+      {users ? <UsersList users={users} /> : users}
     </div>
   );
 };

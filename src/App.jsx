@@ -10,13 +10,15 @@ function App() {
   const { Content } = Layout;
   return (
     <>
-      <Layout style={{ minHeight: "100vh" }}>
+      <Layout style={{ minHeight: "100vh", backgroundColor: "white" }}>
         <Router>
           <Nav />
-          <Routes />
+
+          <Content style={{ marginLeft: "250px", marginRight: "250px", backgroundColor: "#F0F2F5" }}>
+            <Routes></Routes>
+          </Content>
         </Router>
-        <Content />
-        <Foter />
+        <Foter  />
       </Layout>
     </>
   );

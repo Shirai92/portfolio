@@ -10,6 +10,8 @@ const Nav = () => {
       style={{
         position: "sticky",
         top: "0",
+        paddingLeft: '250px',
+        paddingRight: '250px'
       }}
     >
       <Menu mode={"horizontal"} theme={"dark"}>

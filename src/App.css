@@ -1,1 +1,4 @@
 @import '~antd/dist/antd.css';
+.ant-menu-horizontal > .ant-menu-submenu-selected {
+  background-color: #1890FF;
+}
