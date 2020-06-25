@@ -24,7 +24,7 @@ const Project3 = () => {
       date: "2020-10-09",
       important: true,
       active: false,
-      finishDate: null,
+      finishDate: '232323',
     },
     {
       id: 1,
@@ -66,6 +66,7 @@ const Project3 = () => {
         return {
           ...task,
           active: !task.active,
+          finishDate: new Date().getTime(),
         };
       }
       return task;
