@@ -24,7 +24,7 @@ const Project3 = () => {
       date: "2020-10-09",
       important: true,
       active: false,
-      finishDate: '232323',
+      finishDate: "232323",
     },
     {
       id: 1,
@@ -76,7 +76,6 @@ const Project3 = () => {
   };
   return (
     <>
-      <div>TODO APP</div>
       <AddTask></AddTask>
       <TaskList tasks={tasks} delete={deleteTask} change={changeTaskStatus} />
     </>
