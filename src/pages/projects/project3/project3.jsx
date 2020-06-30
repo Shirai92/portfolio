@@ -2,62 +2,16 @@ import React, { useState } from "react";
 import AddTask from "./addTask";
 import TaskList from "./taskList";
 
-// const x = {
-//     id: 0,
-//     text: "Lorem0",
-//     date: "2020-10-09",
-//     important: true,
-//     active: false,
-//     finishDate: null,
-//   }
-
-//   const y = {
-//       ...x,
-//       active: true
-//   }
-
 const Project3 = () => {
-  const [tasks, setTasks] = useState([
-    {
-      id: 0,
-      text: "Lorem0",
-      date: "2020-10-09",
-      important: true,
-      active: false,
-      finishDate: "232323",
-    },
-    {
-      id: 1,
-      text: "Lorem1",
-      date: "2021-10-09",
-      important: true,
-      active: false,
-      finishDate: null,
-    },
-    {
-      id: 2,
-      text: "Lorem2",
-      date: "2022-10-09",
-      important: false,
-      active: true,
-      finishDate: null,
-    },
-    {
-      id: 3,
-      text: "Lorem3",
-      date: "2023-10-09",
-      important: true,
-      active: true,
-      finishDate: null,
-    },
-  ]);
+  const [tasks, setTasks] = useState([]);
 
-  const deleteTask = (id) => {
+  const removeTask = (id) => {
     console.log("delete id" + id);
     const listWihoutSelectedElement = tasks.filter((task) => task.id !== id);
 
     setTasks(listWihoutSelectedElement);
   };
+
   const changeTaskStatus = (id) => {
     console.log("change id" + id);
 
@@ -74,10 +28,36 @@ const Project3 = () => {
     setTasks(arr);
     console.log(arr);
   };
+
+
+
+  const addTask = (text, date, check) => {
+    const getLastElementId = () => {
+      if (tasks.length) {
+        const lastElementId = tasks[tasks.length - 1].id;
+        return lastElementId + 1;
+      }
+      return 0;
+    };
+    console.log("add array");
+    const task = {
+      id: getLastElementId(),
+      text: text,
+      date: date,
+      important: check,
+      active: true,
+      finishDate: null,
+    };
+
+    console.log(task);
+    setTasks([...tasks, task]);
+
+    return true;
+  };
   return (
     <>
-      <AddTask></AddTask>
-      <TaskList tasks={tasks} delete={deleteTask} change={changeTaskStatus} />
+      <AddTask addTask={addTask} />
+      <TaskList tasks={tasks} remove={removeTask} change={changeTaskStatus} />
     </>
   );
 };
