@@ -23,13 +23,11 @@ const Project3 = () => {
           finishDate: new Date().getTime(),
         };
       }
+
       return task;
     });
     setTasks(arr);
-    console.log(arr);
   };
-
-
 
   const addTask = (text, date, check) => {
     const getLastElementId = () => {
@@ -49,7 +47,6 @@ const Project3 = () => {
       finishDate: null,
     };
 
-    console.log(task);
     setTasks([...tasks, task]);
 
     return true;

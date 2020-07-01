@@ -9,7 +9,7 @@ const Project1 = () => {
   const [userList, setUserList] = useState([]);
   const [isLoading2, setLoading2] = useState(false);
 
-  const API = "https://randomuser.me/api/?results=4";
+  const API = "https://randomuser.me/api/?results=3";
 
   useEffect(() => {
     setLoading2(true);
