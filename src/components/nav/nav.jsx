@@ -35,6 +35,10 @@ const Nav = () => {
           <Menu.Item key={"3"}>
             <Link to="/project3">Project3</Link>
           </Menu.Item>
+
+          <Menu.Item key={"4"}>
+            <Link to="/project4">Project4</Link>
+          </Menu.Item>
         </Menu.SubMenu>
 
         <Menu.Item style={{ float: "right" }}>
