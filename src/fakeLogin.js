@@ -1,17 +1,12 @@
 const apiCall = (login, password) =>
   new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (login === "Dupa" && password === "1234") {
+     
+       if (login === "admin" && password === "admin") {
         return resolve({
           message: "Success login",
           statusCode: 200,
-          redirect: "/",
-        });
-      } else if (login === "Dupa1" && password === "12345") {
-        return resolve({
-          message: "Success login",
-          statusCode: 200,
-          redirect: "/contact",
+          redirect: "/panelAdmin",
         });
       } else {
         return reject({

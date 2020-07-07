@@ -7,6 +7,7 @@ import { Layout } from "antd";
 
 function App() {
   const { Content } = Layout;
+
   return (
     <>
       <Layout

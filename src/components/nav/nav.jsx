@@ -20,7 +20,7 @@ const Nav = () => {
         </Menu.Item>
 
         <Menu.Item style={{ float: "right" }}>
-          <Link to="/about">About</Link>
+          <Link to="/panelAdmin">Panel Admin</Link>
         </Menu.Item>
 
         <Menu.SubMenu key="sub2" style={{ float: "right" }} title={"Projects"}>

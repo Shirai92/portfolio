@@ -4,12 +4,22 @@ import LoginButton from "./loginButton";
 import PasswordInput from "./passwordInput";
 import { Form } from "antd";
 import apiCall from "../../../fakeLogin";
+import { useHistory } from "react-router-dom";
 
 const Project4 = (props) => {
+  console.log(props)
+  const history = useHistory();
+
+  function login() {
+    props.setisAutheticated(true);
+    window.localStorage.setItem("isAutheticatedIn", "true");
+  }
+
   const onFinish = (values) => {
     apiCall(values.username, values.password)
       .then((response) => {
-        props.history.push(response.redirect);
+        login();
+        history.push(response.redirect);
         console.log(response);
       })
       .catch((error) => {
