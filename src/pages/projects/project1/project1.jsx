@@ -1,33 +1,42 @@
 import React, { useState, useEffect } from "react";
 import UsersList from "./usersList";
 import ButtonFetch from "./buttonFetch";
-import PageUserList from "./pageUserList";
-import { Spin } from "antd";
+import TableUserList from "./tableUserList";
+
+import useFullPageLoader from "../../../hooks/useFullPageLoader";
 const Project1 = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [userList, setUserList] = useState([]);
-  const [isLoading2, setLoading2] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+  const [loader, showLoader, hideLoader] = useFullPageLoader();
 
   const API = "https://randomuser.me/api/?results=3";
 
+  const handleChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  const includesInLast = (person) =>
+    person.name.last.toLowerCase().includes(searchInput.toLowerCase());
+  const includesInFirst = (person) =>
+    person.name.first.toLowerCase().includes(searchInput.toLowerCase());
+
   useEffect(() => {
-    setLoading2(true);
+    showLoader();
+
     fetch(API)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        setLoading2(false);
         setUserList(data.results);
+        hideLoader();
       })
       .catch((error) => console.log(error));
   }, []);
 
-  if (isLoading2) return <Spin tip="Loading..."></Spin>;
-
   const handleDataFetch = () => {
     setLoading(true);
-    // console.log('click');
+
     fetch(API)
       .then((response) => response.json())
       .then((data) => {
@@ -39,11 +48,29 @@ const Project1 = () => {
   };
 
   return (
-    <div>
-      <PageUserList pageUser={userList}></PageUserList>
+    <>
+      <TableUserList pageUser={userList}></TableUserList>
       <ButtonFetch click={handleDataFetch} isLoading={isLoading} />
-      {users ? <UsersList users={users} /> : users}
-    </div>
+      <button>All</button>
+      <button>Male</button>
+      <button>Female</button>
+      <input
+        type="text"
+        placeholder="Search"
+        value={searchInput}
+        onChange={handleChange}
+      />
+      {users ? (
+        <UsersList
+          users={users.filter(
+            (person) => includesInLast(person) || includesInFirst(person)
+          )}
+        />
+      ) : (
+        users
+      )}
+      {loader}
+    </>
   );
 };
 export default Project1;

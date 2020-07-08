@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import Project1 from "../pages/projects/project1";
-import Project2 from "../pages/projects/project2";
 import Project3 from "../pages/projects/project3";
 import Project4 from "../pages/projects/project4";
 import Home from "../pages/home";
@@ -20,7 +19,6 @@ const Routes = () => {
         <PanelAdmin setisAutheticated={setisAutheticated} />
       </ProtectedRoute>
       <Route path="/project1" component={Project1} />
-      <Route path="/project2" component={Project2} />
       <Route path="/project3" component={Project3} />
       <Route path="/project4">
         <Project4 setisAutheticated={setisAutheticated} />
