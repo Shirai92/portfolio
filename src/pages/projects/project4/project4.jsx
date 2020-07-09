@@ -5,6 +5,7 @@ import PasswordInput from "./passwordInput";
 import { Form } from "antd";
 import apiCall from "../../../fakeLogin";
 import { useHistory } from "react-router-dom";
+import {Modal} from "antd";
 
 const Project4 = (props) => {
   console.log(props)
@@ -15,6 +16,13 @@ const Project4 = (props) => {
     window.localStorage.setItem("isAutheticatedIn", "true");
   }
 
+  function errorModal() {
+    Modal.error({
+      title: 'Wrong Username or Password'
+      
+    });
+  }
+
   const onFinish = (values) => {
     apiCall(values.username, values.password)
       .then((response) => {
@@ -23,6 +31,7 @@ const Project4 = (props) => {
         console.log(response);
       })
       .catch((error) => {
+        errorModal();
         console.log(error);
       });
     console.log("Received values of form: ", values);
@@ -48,6 +57,7 @@ const Project4 = (props) => {
         remember: true,
       }}
       onFinish={onFinish}
+      onFinishFailed={() => console.log('fail')}
     >
       <LoginInput />
       <PasswordInput />
