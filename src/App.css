@@ -1,4 +1,12 @@
-@import '~antd/dist/antd.css';
-.ant-menu-horizontal > .ant-menu-submenu-selected {
-  background-color: #1890FF;
+@import "~antd/dist/antd.css";
+
+
+
+/* .ant-menu.ant-menu-dark {
+  background-color: #241e19;
 }
+
+
+.ant-menu.ant-menu-dark .ant-menu-item-selected {
+  background-color: transparent;
+} */
