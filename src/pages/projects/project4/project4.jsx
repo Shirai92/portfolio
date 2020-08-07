@@ -1,80 +1,68 @@
-import React, { useState } from "react";
+import React from "react";
+import LoginInput from "./loginInput";
+import LoginButton from "./loginButton";
+import PasswordInput from "./passwordInput";
+import { Form } from "antd";
+import apiCall from "../../../fakeLogin";
+import { useHistory } from "react-router-dom";
+import {Modal} from "antd";
 
-const Project4 = () => {
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [checked, setChecked] = useState(false);
+const Project4 = (props) => {
+  console.log(props)
+  const history = useHistory();
 
-  const handleInputNameChange = (e) => {
-    setUserName(e.target.value);
+  function login() {
+    props.setisAutheticated(true);
+    window.localStorage.setItem("isAutheticatedIn", "true");
+  }
+
+  function errorModal() {
+    Modal.error({
+      title: 'Wrong Username or Password'
+      
+    });
+  }
+
+  const onFinish = (values) => {
+    apiCall(values.username, values.password)
+      .then((response) => {
+        login();
+        history.push(response.redirect);
+        console.log(response);
+      })
+      .catch((error) => {
+        errorModal();
+        console.log(error);
+      });
+    console.log("Received values of form: ", values);
   };
 
-  const handleInputEmailChange = (e) => {
-    setEmail(e.target.value);
+  const layout = {
+    wrapperCol: {
+      span: 5,
+      offset: 9,
+    },
   };
 
-  const handleInputPasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleInputCheckboxChange = () => {
-    setChecked(!checked);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("work");
-  };
   return (
-    <div>
-      Project4
-      <form onSubmit={handleSubmit} noValidate>
-        <label htmlFor="username">
-          User Name:
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={userName}
-            onChange={handleInputNameChange}
-          />
-        </label>
-
-        <label htmlFor="email">
-          Email:
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={handleInputEmailChange}
-          />
-        </label>
-
-        <label htmlFor="password">
-          Password:
-          <input
-            type="text"
-            id="upassword"
-            name="password"
-            value={password}
-            onChange={handleInputPasswordChange}
-          />
-        </label>
-        <label htmlFor="accept">
-          <input
-            type="checkbox"
-            id="accept"
-            checked={checked}
-            onChange={handleInputCheckboxChange}
-          />
-          Confirm
-        </label>
-
-        <button>Save</button>
-      </form>
-    </div>
+    <Form
+      {...layout}
+      // style={{
+      //   width: "300px",
+      // }}
+      name="normal_login"
+      className="login-form"
+      size="large"
+      initialValues={{
+        remember: true,
+      }}
+      onFinish={onFinish}
+      onFinishFailed={() => console.log('fail')}
+    >
+      <LoginInput />
+      <PasswordInput />
+      <LoginButton />
+    </Form>
   );
 };
 export default Project4;

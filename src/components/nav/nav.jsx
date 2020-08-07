@@ -4,14 +4,14 @@ import { Menu } from "antd";
 import { Layout } from "antd";
 
 const Nav = () => {
-  const { Header } = Layout; 
+  const { Header } = Layout;
   return (
     <Header
       style={{
         position: "sticky",
         top: "0",
-        paddingLeft: '250px',
-        paddingRight: '250px'
+        paddingLeft: "250px",
+        paddingRight: "250px",
       }}
     >
       <Menu mode={"horizontal"} theme={"dark"}>
@@ -20,23 +20,19 @@ const Nav = () => {
         </Menu.Item>
 
         <Menu.Item style={{ float: "right" }}>
-          <Link to="/about">About</Link>
+          <Link to="/panelAdmin">Panel Admin</Link>
         </Menu.Item>
 
         <Menu.SubMenu key="sub2" style={{ float: "right" }} title={"Projects"}>
-          <Menu.Item key={"1"} >
+          <Menu.Item key={"1"}>
             <Link to="/project1">Project1</Link>
           </Menu.Item>
 
           <Menu.Item key={"2"}>
-            <Link to="/project2">Project2</Link>
-          </Menu.Item>
-
-          <Menu.Item key={"3"}>
             <Link to="/project3">Project3</Link>
           </Menu.Item>
 
-          <Menu.Item key={"4"}>
+          <Menu.Item key={"3"}>
             <Link to="/project4">Project4</Link>
           </Menu.Item>
         </Menu.SubMenu>
