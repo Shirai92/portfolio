@@ -1,18 +1,11 @@
 import React from "react";
-import { LoadingOutlined } from "@ant-design/icons";
-
-const IsLoadingButton = (
-  <button disabled style={{ backgroundColor: "yellow" }}>
-    <LoadingOutlined />
-    Loading...
-  </button>
-);
+import { Button } from "antd";
 
 const ButtonFetch = (props) => {
-  if (props.isLoading) {
-    return IsLoadingButton;
-  }
-
-  return <button onClick={props.click}>Add five users</button>;
+  return (
+    <Button type="primary" loading={props.isLoading} onClick={props.click}>
+      Add five users
+    </Button>
+  );
 };
 export default ButtonFetch;

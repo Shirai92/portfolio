@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { Table } from "antd";
 
 const Project2 = () => {
   const [userList, setUserList] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  const API = "https://randomuser.me/api/?results=8";
+  const API = "https://randomuser.me/api/?results=4";
 
   const handleChange = (e) => {
     setSearchInput(e.target.value);
@@ -13,7 +14,6 @@ const Project2 = () => {
     fetch(API)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setUserList(data.results);
       })
       .catch((error) => console.log(error));
@@ -34,6 +34,35 @@ const Project2 = () => {
       </div>
     ));
 
+  const data = userList.map((user) => ({
+    Name: user.name.first,
+    SurName: user.name.last,
+    Sex: user.gender,
+    key: user.login.uuid,
+  }));
+
+  const columns = [
+    {
+      title: "Name",
+      dataIndex: "Name",
+      key: "key",
+      align: "center",
+    },
+
+    {
+      title: "SurName",
+      dataIndex: "SurName",
+      key: "key",
+      align: "center",
+    },
+
+    {
+      title: "Sex",
+      dataIndex: "Sex",
+      key: "key",
+      align: "center",
+    },
+  ];
   return (
     <div>
       <button>All</button>
@@ -46,6 +75,12 @@ const Project2 = () => {
         onChange={handleChange}
       />
       {Items}
+      <Table
+        columns={columns}
+        dataSource={data}
+        pagination={false}
+        bordered={true}
+      ></Table>
     </div>
   );
 };
