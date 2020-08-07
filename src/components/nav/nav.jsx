@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Menu } from "antd";
 import styled from "styled-components";
 
-const Test = styled(Menu)`
+const StyledMenu = styled(Menu)`
   &.ant-menu {
     background-color: #241e19;
   }
@@ -18,7 +18,7 @@ const Test = styled(Menu)`
 
     :hover {
       a {
-        color: red;
+        color: #ab5354;
       }
     }
   }
@@ -30,15 +30,15 @@ const Test = styled(Menu)`
 
   &.ant-menu.ant-menu-dark {
     .ant-menu-item-selected {
-      background-color: green;
+      background-color: transparent;
       a {
-        color: red;
+        color: #ab5354;
       }
     }
   }
 `;
 
-const Test2 = styled(Menu.SubMenu)`
+const StyledSubMenu = styled(Menu.SubMenu)`
   float: right;
   .ant-menu-submenu-title {
     color: white;
@@ -46,14 +46,14 @@ const Test2 = styled(Menu.SubMenu)`
 
   &.ant-menu-submenu-selected {
     .ant-menu-submenu-title {
-      color: green;
+      color: #ab5354;
     }
   }
 `;
 
 const Nav = () => {
   return (
-    <Test mode={"horizontal"} theme="dark">
+    <StyledMenu mode={"horizontal"} theme="dark">
       <Menu.Item>
         <Link to="/">
           <p>Home</p>
@@ -66,7 +66,7 @@ const Nav = () => {
         </Link>
       </Menu.Item>
 
-      <Test2 key="sub2" title="Projects">
+      <StyledSubMenu key="sub2" title="Projects">
         <Menu.Item key={"1"}>
           <Link to="/project1">Project1</Link>
         </Menu.Item>
@@ -78,14 +78,14 @@ const Nav = () => {
         <Menu.Item key={"3"}>
           <Link to="/project4">Project4</Link>
         </Menu.Item>
-      </Test2>
+      </StyledSubMenu>
 
       <Menu.Item>
         <Link to="/contact">
           <p>Contact</p>
         </Link>
       </Menu.Item>
-    </Test>
+    </StyledMenu>
   );
 };
 export default Nav;
